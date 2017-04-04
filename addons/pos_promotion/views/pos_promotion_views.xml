@@ -1,0 +1,5 @@
+<odoo>
+    <data>
+        <menuitem name="POS Promotions" id="menu_pos_promotion"/>
+    </data>
+</odoo>

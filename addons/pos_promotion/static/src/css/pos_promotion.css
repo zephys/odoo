@@ -1,0 +1,17 @@
+.pos .get-product{
+    /*background: red;*/
+}
+.pos .get-product-checkbox{
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    vertical-align: top;
+    line-height: 13px;
+}
+.pos .get-product-title{
+}
+.pos .get-product-title-title{
+}
+.pos .pos_promotion_message {
+    color: #ff0000;
+}

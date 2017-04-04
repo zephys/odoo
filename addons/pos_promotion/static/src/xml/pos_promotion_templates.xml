@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="PosPromotionButton">
+        <div class='control-button js_discount'>
+            <i class='fa fa-tag' /> Promotion
+        </div>
+    </t>
+
+    <t t-name="GetFreeProductTitleList">
+        <span class="orders touch-scrollable">
+            <t t-foreach="widget.options.list_title || []" t-as="item">
+                <span class="order-button select-order selected" style="
+margin-bottom: 6px;
+">
+                    <t t-esc=" item.name || 'Select' " />
+                    <span class="fa">
+                        Max Free gift :
+                        <t t-esc="item.item_chosen || '0'"/>
+                        /
+                        <t t-esc="item.chosen_product"/>
+                    </span>
+                </span>
+            </t>
+        </span>
+    </t>
+
+    <t t-name="GetFreeProductList">
+        <!--<div class="product-list">-->
+            <t t-foreach="freeproduct || []" t-as="item">
+                <!--<div class='selection-item' t-att-data-item-index='item_index'>-->
+                    <t t-name="Product">
+                        <span class='product get-product' t-att-data-product-id="item.id" t-att-data-item-index='item_index'>
+                            <div class="product-img">
+                                <input class="get-product-checkbox" type="checkbox" style="min-height:initial;width:initial;box-shadow: none;"/>
+                                <img t-att-src="widget.get_product_image_url(item.id)" />
+                            </div>
+                            <div class="product-name">
+                                <t t-esc="item.display_name"/>
+                            </div>
+                        </span>
+                    </t>
+                <!--</div>-->
+                <span class="placeholder-ScrollbarWidget" />
+            </t>
+        <!--</div>-->
+    </t>
+
+    <t t-name="GetFreeProductPopupWidget">
+        <div class="modal-dialog">
+            <div class="popup popup-selection">
+                <div class="title" style="padding:2px;">
+                    <span class="orders touch-scrollable bxgy-title-list">
+                        <t t-foreach="widget.options.list_title || []" t-as="item">
+                            <span class="order-button select-order selected free-product-title-selection-item" style="
+            margin-bottom: 6px;" t-att-data-item-index='item_index' t-att-data-id='item.id'>
+                                <t t-esc=" item.name || 'Select' "/>
+                                <span class="fa" t-att-data-item-index='item_index' t-att-data-id='item.id'>
+                                    Max Free gift :
+                                    <!--<t t-esc="item.item_chosen || '0'"/>-->
+                                    <span class="show-item-chosen" t-att-data-item-index='item_index' t-att-data-id='item.id'>
+                                        <t t-esc="item.item_chosen || '0'"/>
+                                    </span>
+                                    /
+                                    <t t-esc="item.chosen_product"/>
+                                </span>
+                            </span>
+                        </t>
+                    </span>
+                </div>
+                <div class="selection scrollable-y touch-scrollable">
+                    <div class="product-list">
+                        <t t-foreach="widget.list || []" t-as="item">
+                                <t t-name="Product">
+                                    <div class='product get-product free-product-selection-item' t-att-data-item-index='item_index' t-att-data-product-checkbox-id="item.product_list.id" t-att-data-product-bxgy-id="item.product_bxgy_id">
+                                    <!--<span class='product get-product free-product-selection-item' t-att-data-product-id="item.product_list.id" t-att-data-item-index='item_index'>-->
+                                        <div class="product-img" t-att-data-product-checkbox-id="item.product_list.id" t-att-data-item-index='item_index' t-att-data-product-bxgy-id="item.product_bxgy_id">
+                                            <input t-att-data-product-checkbox-id="item.product_list.id" t-att-data-item-index='item_index' class="get-product-checkbox" t-att-data-product-bxgy-id="item.product_bxgy_id" type="checkbox" style="min-height:initial;width:initial;box-shadow: none;" onclick="return false;" onkeydown="return false;"/>
+                                            <!--<span style="font-size: 200%;position: absolute;top: 2px;right: 2px;vertical-align: top;line-height: 13px;min-height:initial;width:initial;box-shadow: none;color: yellowgreen;">&#10004;</span>-->
+                                            <img t-att-data-product-checkbox-id="item.product_list.id" t-att-data-item-index='item_index' t-att-data-product-bxgy-id="item.product_bxgy_id" t-att-src="widget.get_product_image_url(item.product_list.id)" />
+                                        </div>
+                                        <div t-att-data-product-bxgy-id="item.product_bxgy_id" t-att-data-product-checkbox-id="item.product_list.id" t-att-data-item-index='item_index' class="product-name">
+                                            <t t-esc="item.product_list.display_name"/>
+                                        </div>
+                                    <!--</span>-->
+                                    </div>
+                                </t>
+                            <span class="placeholder-ScrollbarWidget" t-att-data-product-bxgy-id="item.product_bxgy_id" t-att-data-product-id="item.product_list.id" t-att-data-item-index='item_index' />
+                        </t>
+                    </div>
+                </div>
+                <div class="footer">
+                    <div class="button cancel">
+                        Cancel
+                    </div>
+                    <div class="button confirm confirm-free-product">
+                        Ok
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+</templates>

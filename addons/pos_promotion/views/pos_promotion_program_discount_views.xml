@@ -1,0 +1,32 @@
+<odoo>
+    <data>
+        <record id="pos_promotion_program_discount_form_view" model="ir.ui.view">
+            <field name="name">pos.promotion.program.discount.form</field>
+            <field name="model">pos.promotion.program</field>
+            <field name="inherit_id" ref="pos_promotion.view_pos_promotion_program_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet[last()]" position="replace">
+                    <!--<page string="Product discount" name="pos_promotion_disocunt" attrs="{'invisible':[('type','not in','discount')]}">-->
+                    <sheet  attrs="{'invisible':[('type','not in','discount')]}">
+                        <group string="Product discount" name="pos_promotion_disocunt">
+                            <field name="pos_promotion_discount_access">
+                                <tree string="Product discount" editable="top">
+                                    <field name="product_id"/>
+                                    <field name="min_qty"/>
+                                    <field name="discount"/>
+                                </tree>
+                                <form string="Product discount">
+                                    <group col="3">
+                                        <field name="product_id"/>
+                                        <field name="min_qty"/>
+                                        <field name="discount"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </group>
+                    </sheet>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

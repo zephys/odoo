@@ -1,0 +1,96 @@
+<odoo>
+    <data>
+        <record id="view_pos_promotion_program_form" model="ir.ui.view">
+            <field name="name">pos.promotion.program.form</field>
+            <field name="model">pos.promotion.program</field>
+            <field name="arch" type="xml">
+                <form string="Promotion Program">
+                    <header>
+                        <button name="draft" type="workflow"
+                                string="Reset to draft"
+                                states="active,cancel"/>
+                        <button name="active" type="workflow"
+                                string="Active" states="draft"
+                                class="oe_highlight"/>
+                        <button name="cancel" type="workflow"
+                                string="Cancel" states="active"
+                                class="oe_highlight"/>
+                        <button name="active" type="workflow"
+                                string="Reset to active"
+                                states="cancel"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name" placeholder="Program's Name" />
+                            </h1>
+
+                            <label for="description" class="oe_edit_only"/>
+                            <field name="description" placeholder="Program's Description"/>
+                        </div>
+
+                        <group>
+                            <group>
+                                <field name="type" options="{'no_create_edit': True}"/>
+                                <field name="sequence"/>
+                                <!--<field name="status"/>-->
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="day_apply" widget="many2many_checkboxes"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <sheet></sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_pos_promotion_program_tree" model="ir.ui.view">
+            <field name="name">pos.promotion.program.tree</field>
+            <field name="model">pos.promotion.program</field>
+            <field name="arch" type="xml">
+                <tree string="Promotion Programs">
+                    <field name="name"/>
+                    <field name="type"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="sequence"/>
+                    <field name="state"/>
+                    <!--<field name="status"/>-->
+                </tree>
+            </field>
+        </record>
+        <record id="view_pos_promotion_program_search" model="ir.ui.view">
+            <field name="name">pos.promotion.program.search</field>
+            <field name="model">pos.promotion.program</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="type"/>
+                    <group string="Group By">
+                        <filter string="Type" domain="[]" context="{'group_by': 'type'}"/>
+                        <filter string="Sequence" domain="[]" context="{'group_by': 'sequence'}"/>
+                        <filter string="State" domain="[]" context="{'group_by': 'state'}"/>
+                        <!--<filter string="Status" domain="[]" context="{'group_by': 'status'}"/>-->
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record id="action_pos_promotion_program" model="ir.actions.act_window">
+            <field name="name">Promotion Programs</field>
+            <field name="res_model">pos.promotion.program</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create the first promotion program
+                </p>
+            </field>
+        </record>
+        <menuitem name="Promotion Programs" id="menu_pos_promotion_program" parent="menu_pos_promotion" action="action_pos_promotion_program" sequence="1"/>
+    </data>
+</odoo>

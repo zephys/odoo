@@ -1,0 +1,47 @@
+<odoo>
+    <data>
+        <record id="pos_promotion_program_bxgy_form_view" model="ir.ui.view">
+            <field name="name">pos.promotion.program.bxgy.form</field>
+            <field name="model">pos.promotion.program</field>
+            <field name="inherit_id" ref="pos_promotion.view_pos_promotion_program_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='day_apply']/.." position="after">
+                    <group>
+                        <field name="number_select_free" attrs="{'invisible':[('type','not in','bxgy')]}" />
+                    </group>
+                </xpath>
+                <xpath expr="//sheet[last()]" position="replace">
+                    <!--<page string="Product discount" name="pos_promotion_disocunt" attrs="{'invisible':[('type','not in','discount')]}">-->
+                    <sheet  attrs="{'invisible':[('type','not in','bxgy')]}">
+                        <group string="Product (Buy X get Y)" name="pos_promotion_bxgy">
+                            <field name="pos_promotion_bxgy_buy">
+                                <tree string="Product (Buy X get Y)" editable="top">
+                                    <field name="product_id"/>
+                                    <field name="min_qty"/>
+                                </tree>
+                                <form string="Product (Buy X get Y)">
+                                    <group col="3">
+                                        <field name="product_id"/>
+                                        <field name="min_qty"/>
+                                    </group>
+                                </form>
+                            </field>
+                            <field name="pos_promotion_bxgy_get">
+                                <tree string="Product (Buy X get Y)" editable="top">
+                                    <field name="product_id"/>
+                                    <!--<field name="max_qty"/>-->
+                                </tree>
+                                <form string="Product (Buy X get Y)">
+                                    <group col="3">
+                                        <field name="product_id"/>
+                                        <!--<field name="max_qty"/>-->
+                                    </group>
+                                </form>
+                            </field>
+                        </group>
+                    </sheet>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

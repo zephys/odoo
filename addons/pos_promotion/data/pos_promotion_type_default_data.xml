@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="pos_promotion_type_discount" model="pos.promotion.type">
+            <field name="name">Discount (%)</field>
+            <field name="code">discount</field>
+        </record>
+
+        <record id="pos_promotion_type_special_price" model="pos.promotion.type">
+            <field name="name">Special Price</field>
+            <field name="code">special_price</field>
+        </record>
+
+        <record id="pos_promotion_type_bxgy" model="pos.promotion.type">
+            <field name="name">Buy X get Y Free</field>
+            <field name="code">bxgy</field>
+        </record>
+
+        <record id="pos_promotion_type_give_product" model="pos.promotion.type">
+            <field name="name">Give Product</field>
+            <field name="code">give_product</field>
+        </record>
+
+        <record id="pos_promotion_type_discount_on_cat" model="pos.promotion.type">
+            <field name="name">Discount On Categories</field>
+            <field name="code">discount_on_cat</field>
+        </record>
+
+        <record id="pos_promotion_type_discount_on_total" model="pos.promotion.type">
+            <field name="name">Discount On Total</field>
+            <field name="code">discount_on_total</field>
+        </record>
+    </data>
+</odoo>
+

@@ -1,0 +1,34 @@
+<odoo>
+    <data>
+        <record id="pos_promotion_program_give_product_form_view" model="ir.ui.view">
+            <field name="name">pos.promotion.program.give.product.form</field>
+            <field name="model">pos.promotion.program</field>
+            <field name="inherit_id" ref="pos_promotion.view_pos_promotion_program_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='day_apply']/.." position="after">
+                    <group>
+                        <field name="total_order" attrs="{'invisible':[('type','not in','give_product')]}" />
+                        <field name="number_select_gift" attrs="{'invisible':[('type','not in','give_product')]}" />
+                    </group>
+                </xpath>
+                <xpath expr="//sheet[last()]" position="replace">
+                    <!--<page string="Product discount" name="pos_promotion_disocunt" attrs="{'invisible':[('type','not in','discount')]}">-->
+                    <sheet  attrs="{'invisible':[('type','not in','give_product')]}">
+                        <group string="Free gift product" name="pos_promotion_give_product">
+                            <field name="pos_promotion_give_product_access">
+                                <tree string="Free gift product" editable="top">
+                                    <field name="product_id"/>
+                                </tree>
+                                <form string="Free gift product">
+                                    <group col="3">
+                                        <field name="product_id"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </group>
+                    </sheet>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

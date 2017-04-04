@@ -1,0 +1,32 @@
+<odoo>
+    <data>
+        <record id="pos_promotion_program_bxpy_form_view" model="ir.ui.view">
+            <field name="name">pos.promotion.program.bxpy.form</field>
+            <field name="model">pos.promotion.program</field>
+            <field name="inherit_id" ref="pos_promotion.view_pos_promotion_program_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet[last()]" position="replace">
+                    <!--<page string="Product discount" name="pos_promotion_disocunt" attrs="{'invisible':[('type','not in','discount')]}">-->
+                    <sheet  attrs="{'invisible':[('type','not in','bxpy')]}">
+                        <group string="Product (Buy X pay Y)" name="pos_promotion_bxpy">
+                            <field name="pos_promotion_bxpy_access">
+                                <tree string="Product (Buy X pay Y)" editable="top">
+                                    <field name="product_id"/>
+                                    <field name="qty_buy"/>
+                                    <field name="qty_pay"/>
+                                </tree>
+                                <form string="Product (Buy X pay Y)">
+                                    <group col="3">
+                                        <field name="product_id"/>
+                                        <field name="qty_buy"/>
+                                    <field name="qty_pay"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </group>
+                    </sheet>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,59 @@
+<odoo>
+    <data>
+        <record model="workflow" id="pos_promotion_program_workflow">
+            <field name="name">POS Promotion Program Workflow</field>
+            <field name="osv">pos.promotion.program</field>
+            <field name="on_create">True</field>
+        </record>
+        <record model="workflow.activity" id="pos_promotion_program_workflow_draft">
+            <field name="name">Draft</field>
+            <field name="wkf_id" ref="pos_promotion_program_workflow"/>
+            <field name="flow_start" eval="True"/>
+            <field name="kind">function</field>
+            <field name="action">action_draft()</field>
+        </record>
+        <record model="workflow.activity" id="pos_promotion_program_workflow_active">
+            <field name="name">Active</field>
+            <field name="wkf_id" ref="pos_promotion_program_workflow"/>
+            <field name="kind">function</field>
+            <field name="action">action_active()</field>
+        </record>
+        <record model="workflow.activity" id="pos_promotion_program_workflow_cancel">
+            <field name="name">Cancel</field>
+            <field name="wkf_id" ref="pos_promotion_program_workflow"/>
+            <field name="kind">function</field>
+            <field name="action">action_cancel()</field>
+        </record>
+
+        <record model="workflow.transition" id="program_active_to_draft">
+            <field name="act_from" ref="pos_promotion_program_workflow_active"/>
+            <field name="act_to" ref="pos_promotion_program_workflow_draft"/>
+            <field name="signal">draft</field>
+        </record>
+        <record model="workflow.transition" id="program_cancel_to_draft">
+            <field name="act_from" ref="pos_promotion_program_workflow_cancel"/>
+            <field name="act_to" ref="pos_promotion_program_workflow_draft"/>
+            <field name="signal">draft</field>
+        </record>
+        <record model="workflow.transition" id="program_draft_to_active">
+            <field name="act_from" ref="pos_promotion_program_workflow_draft"/>
+            <field name="act_to" ref="pos_promotion_program_workflow_active"/>
+            <field name="signal">active</field>
+        </record>
+        <record model="workflow.transition" id="program_cancel_to_active">
+            <field name="act_from" ref="pos_promotion_program_workflow_cancel"/>
+            <field name="act_to" ref="pos_promotion_program_workflow_active"/>
+            <field name="signal">active</field>
+        </record>
+        <record model="workflow.transition" id="program_draft_to_cancel">
+            <field name="act_from" ref="pos_promotion_program_workflow_draft"/>
+            <field name="act_to" ref="pos_promotion_program_workflow_cancel"/>
+            <field name="signal">cancel</field>
+        </record>
+        <record model="workflow.transition" id="program_active_to_cancel">
+            <field name="act_from" ref="pos_promotion_program_workflow_active"/>
+            <field name="act_to" ref="pos_promotion_program_workflow_cancel"/>
+            <field name="signal">cancel</field>
+        </record>
+    </data>
+</odoo>

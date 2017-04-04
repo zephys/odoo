@@ -1,0 +1,18 @@
+<odoo>
+    <data>
+        <record id="pos_promotion_program_discount_on_total_form_view" model="ir.ui.view">
+            <field name="name">pos.promotion.program.give.product.form</field>
+            <field name="model">pos.promotion.program</field>
+            <field name="inherit_id" ref="pos_promotion.view_pos_promotion_program_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='day_apply']/.." position="after">
+                    <group>
+                        <field name="total_order" attrs="{'invisible':[('type','not in','discount_on_total')]}" />
+                        <field name="discount_on_total_type" attrs="{'invisible':[('type','not in','discount_on_total')]}" />
+                        <field name="discount_on_total_value" attrs="{'invisible':[('type','not in','discount_on_total')]}" />
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
